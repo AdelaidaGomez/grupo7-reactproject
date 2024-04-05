@@ -49,8 +49,7 @@ const Users = () => {
         }
       };
       fetchData();
-    }, []); // Dependencia en profession para que se ejecute cuando cambie
-    // Función para cambiar el valor de profession
+    }, []);
        
     return (
       <Box m="20px">

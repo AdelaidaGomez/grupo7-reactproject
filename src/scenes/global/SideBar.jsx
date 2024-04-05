@@ -126,7 +126,7 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item
-              title="All users"
+              title="Users"
               to="/users"
               icon={<PeopleOutlinedIcon />}
               selected={selected}

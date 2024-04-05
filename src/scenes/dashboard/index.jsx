@@ -41,6 +41,37 @@ useEffect( () => {
   const colors = tokens(theme.palette.mode);
   const [users, setUsers] = useState([]);
 
+
+// ----------------------------------------------------------------------------------------------------------------------
+
+  // PROFESSION
+
+  const [profession, setProfession] = useState({});
+
+  useEffect( () => {
+    if (Object.keys(profession).length === 0) {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://localhost:3050/api/services/${profession}`);
+          console.log(profession);
+          const data = await response.json();
+          console.log("Fetched data: ", data);
+          // Asignamos una propiedad 'id' única a cada fila
+        const rowsWithIds = data.data.data.profession.map((row, index) => ({
+          ...row,
+          id: index + 1, // Usamos un identificador único adecuado aquí
+        }));
+          setProfession(rowsWithIds);
+        } catch (error) {
+          console.log("Error: ", error)
+        }
+      };
+      fetchData();
+    };
+  }, [profession]); // Dependencia en profession para que se ejecute cuando cambie
+
+//----------------------------------------------------------------------------------------------------------------------------
+
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -108,7 +139,7 @@ useEffect( () => {
         >
           <StatBox
             title="32,441"
-            subtitle="Categories Total"
+            subtitle="Professions Total"
             progress="0.30"
             increase="+5%"
             icon={
@@ -137,7 +168,7 @@ useEffect( () => {
             p="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Categories
+              Profession
             </Typography>
           </Box>
           {/* Aca para simular la data hice un mapeo, se puede hacer el mismo mapeo pero en vez de llamar transacciones se llama a las categorias y se pone el total de servicios que tiene cada categoria */}

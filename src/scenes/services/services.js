@@ -23,7 +23,7 @@ const Services = () => {
     },
     {
       field: "age",
-      headerName: "Age",
+      headerName: "Profession",
       type: "number",
       headerAlign: "left",
       align: "left",

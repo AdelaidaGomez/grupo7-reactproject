@@ -3,6 +3,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 //MOCK DATA 
 import { mockTransactions } from "../../data/mockData";
+import { useState, useEffect } from 'react';
 
 //icons
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -13,9 +14,32 @@ import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import Header from "../../components/Header";
 import StatBox from "../../components/StatBox";
 
+
+
 const Dashboard = () => {
+
+  //Traer data de api users
+useEffect( () => {
+  
+  const fetchData = async () => {
+    
+    try {
+      const response = await fetch(`http://localhost:3050/api/users/count`);
+      const data = await response.json();
+      
+      setUsers(data.total_users);
+      console.log('impriendo users');
+      console.log(data.total_users);
+    } catch (error) {
+      console.log("Error: ", error)
+    }
+  };
+  fetchData();
+}, []);
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [users, setUsers] = useState([]);
 
   return (
     <Box m="20px">
@@ -63,7 +87,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
+            title= {users.total_users}
             subtitle="Users Total"
             progress="0.50"
             increase="+21%"

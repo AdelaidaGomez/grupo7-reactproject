@@ -7,6 +7,7 @@ import Dashboard from "./scenes/dashboard"
 import SideBar from './scenes/global/SideBar';
 import Users from "./scenes/users/users";
 import Services from "./scenes/services/services";
+import Profession from "./scenes/profession/profession";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
                <Route path="/users" element={<Users />} /> 
                <Route path="/services" element={<Services />} /> 
+               <Route path="/profession" element={<Profession />} /> 
             </Routes>
           </main>
         </div>

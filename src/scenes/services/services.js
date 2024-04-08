@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
+import { useState, useEffect } from 'react';
 
 //Mock Data CHANGE TO REAL DATA!!!
-import { mockDataContacts } from "../../data/mockData";
+//import { mockDataContacts } from "../../data/mockData";
 
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
@@ -11,49 +12,47 @@ import { useTheme } from "@mui/material";
 const Services = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [services, setServices] = useState([]);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
-    {
+        {
       field: "name",
       headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Profession",
+      field: "description",
+      headerName: "Description",
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "detailURL",
+      headerName: "URL",
       flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-    {
-      field: "address",
-      headerName: "Address",
-      flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
-      flex: 1,
-    },
+    }
+  
   ];
+
+  useEffect( () => {
+    console.log('Afuera del fectdata')
+    const fetchData = async () => {
+      console.log('Adentro del fectdata')
+      try {
+        const response = await fetch(`http://localhost:3050/api/services`);
+        const data = await response.json();
+        console.log('datos usuarios');
+        console.log(data.data.services);
+        setServices(data.data.services);
+      } catch (error) {
+        console.log("Error: ", error)
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <Box m="20px">
@@ -94,7 +93,7 @@ const Services = () => {
         }}
       >
         <DataGrid
-          rows={mockDataContacts}
+          rows={services}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />

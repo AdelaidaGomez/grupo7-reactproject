@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
+
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -132,6 +133,7 @@ const Dashboard = () => {
               }
             />
           </Box>
+
           {/* Users total */}
           <Box
             gridColumn="span 3"
@@ -152,7 +154,7 @@ const Dashboard = () => {
               }
             />
           </Box>
-          {/* Categories total */}
+          {/* totalBaseDatos total */}
           <Box
             gridColumn="span 3"
             backgroundColor={colors.primary[400]}
@@ -161,40 +163,36 @@ const Dashboard = () => {
             justifyContent="center"
           >
             <StatBox
-              title={totalBaseDatos !== null ? totalBaseDatos : 'Cargando...'}
-              subtitle="Base de Datos"
-              progress="0.30"
-              increase="+5%"
+              title= {totalBaseDatos !== null ? totalBaseDatos : 'Cargando...'}
+              subtitle="DataBase Totals"
+              progress="0.50"
+              increase="+21%"
+              icon={
+                <PeopleOutlinedIcon
+                  sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                />
+              }
+            />
+          </Box>
+          {/* totalFrontend total */}
+          <Box
+            gridColumn="span 3"
+            backgroundColor={colors.primary[400]}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <StatBox
+              title= {totalFrontend !== null ? totalFrontend : 'Cargando...'}
+              subtitle="FrontEnd Totals"
+              progress="0.50"
+              increase="+21%"
               icon={
                 <ReceiptOutlinedIcon
                   sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
                 />
               }
             />
-
-<StatBox
-              title={totalFrontend !== null ? totalFrontend : 'Cargando...'}
-              subtitle="Frontend"
-              progress="0.10"
-              increase="+2%"
-              icon={
-                <ReceiptOutlinedIcon
-                  sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-                />
-              }
-            />
-
- <StatBox
-              title={totalBackend !== null ? totalBackend : 'Cargando...'}
-              subtitle="Backend"
-              progress="0.05"
-              increase="+0,5%"
-              icon={
-                <ReceiptOutlinedIcon
-                  sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-                />
-              }
-            /> 
           </Box>
   
   

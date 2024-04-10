@@ -9,6 +9,9 @@ import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import Header from "../../components/Header";
 import StatBox from "../../components/StatBox";
 
+import Users from '../users/users';
+
+
 const Dashboard = () => {
     
     const theme = useTheme();
@@ -16,6 +19,7 @@ const Dashboard = () => {
 
      // Datos total Usuario y Llamado de Api users 
     const [totalUsers, setTotalUsers] = useState(null);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -208,48 +212,24 @@ const Dashboard = () => {
               display="flex"
               justifyContent="space-between"
               alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
               colors={colors.grey[100]}
-              p="15px"
+              p="1px"
             >
-              <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-                Profession
-              </Typography>
             </Box>
-            {/* Aca para simular la data hice un mapeo, se puede hacer el mismo mapeo pero en vez de llamar transacciones se llama a las categorias y se pone el total de servicios que tiene cada categoria */}
-            {mockTransactions.map((transaction, i) => (
+            {/* Index Users */}
+            {Users((user, i) => (
               <Box
-                key={`${transaction.txId}-${i}`}
+                key={`${user.name}-${i}`}
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
                 borderBottom={`4px solid ${colors.primary[500]}`}
                 p="15px"
               >
-                <Box>
-                  <Typography
-                    color={colors.greenAccent[500]}
-                    variant="h5"
-                    fontWeight="600"
-                  >
-                    {transaction.txId}
-                  </Typography>
-                  <Typography color={colors.grey[100]}>
-                    {transaction.user}
-                  </Typography>
-                </Box>
-                <Box color={colors.grey[100]}>{transaction.date}</Box>
-                <Box
-                  backgroundColor={colors.greenAccent[500]}
-                  p="5px 10px"
-                  borderRadius="4px"
-                >
-                  ${transaction.cost}
-                </Box>
               </Box>
             ))}
           </Box>
-          {/* panel de XXX */} 
+          {/* panel de Last User created */} 
           <Box
             gridColumn="span 4"
             gridRow="span 2"
@@ -257,7 +237,7 @@ const Dashboard = () => {
             p="30px"
           >
             <Typography variant="h5" fontWeight="600">
-              Las User Created
+              Last User Created
             </Typography>
             <Box
               display="flex"
@@ -271,8 +251,6 @@ const Dashboard = () => {
   
             </Box>
           </Box>
-  
-           
   
           {/* ROW 3 */}
            {/* panel de listado de todos los productos */} 

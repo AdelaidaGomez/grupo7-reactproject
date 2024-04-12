@@ -198,10 +198,31 @@ const Dashboard = () => {
               }
             />
           </Box>
+
+          {/* totalBackend total */}
+          <Box
+            gridColumn="span 3"
+            backgroundColor={colors.primary[400]}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <StatBox
+              title= {totalBackend !== null ? totalBackend : 'Cargando...'}
+              subtitle="Backend Totals"
+              progress="0.50"
+              increase="+21%"
+              icon={
+                <ReceiptOutlinedIcon
+                  sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                />
+              }
+            />
+          </Box>
   
   
           {/* ROW 2 */}
-          {/* panel de listado de todos los productos */} 
+          {/* panel de listado de todos los USUARIOS */} 
           <Box
             gridColumn="span 8"
             gridRow="span 2"
@@ -229,28 +250,7 @@ const Dashboard = () => {
               </Box>
             ))}
           </Box>
-          {/* panel de Last User created */} 
-          <Box
-            gridColumn="span 4"
-            gridRow="span 2"
-            backgroundColor={colors.primary[400]}
-            p="30px"
-          >
-            <Typography variant="h5" fontWeight="600">
-              Last User Created
-            </Typography>
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              mt="25px"
-            >
-  
-                INFORMACION DEL ULTIMO USUARIO CREADO, Para cada linea de codigo se puede hacer como esta abajo 
-              <Typography>Includes extra misc expenditures and costs</Typography>
-  
-            </Box>
-          </Box>
+          
   
           {/* ROW 3 */}
            {/* panel de listado de todos los productos */} 
